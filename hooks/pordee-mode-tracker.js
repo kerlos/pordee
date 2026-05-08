@@ -28,8 +28,8 @@ function parseTrigger(prompt) {
     return null;
   }
 
-  // Thai phrase triggers — match only when the trigger is the entire trimmed input.
-  // Disable triggers checked first so "หยุดพอดี" wins over "พอดี" substring.
+  // Thai phrase triggers — exact match only (=== on trimmed input), so order is irrelevant.
+  // Disable listed first purely for readability.
   const enableThai = ['พอดีโหมด', 'พูดสั้นๆ', 'พอดี'];
   const disableThai = ['หยุดพอดี', 'พูดปกติ'];
 
