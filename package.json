@@ -5,11 +5,15 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "test": "node --test 'tests/test_*.js'"
+    "test": "node --test 'tests/test_*.js'",
+    "lint": "eslint hooks/ tests/"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "license": "MIT",
-  "author": "Vatunyoo Suwannapisit"
+  "author": "Vatunyoo Suwannapisit",
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
 }
