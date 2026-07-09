@@ -2,26 +2,51 @@
 
 > ทำไมใช้คำเยอะ ตอบสั้นๆ ก็เข้าใจ
 
-ได้แรงบันดาลใจมาจาก [caveman](https://github.com/JuliusBrussee/caveman) — pordee เป็นรุ่นภาษาไทยที่ตัด token ทิ้งโดยไม่เสียความถูกต้องทาง technical
+ได้แรงบันดาลใจมาจาก [caveman](https://github.com/JuliusBrussee/caveman) — pordee เป็นรุ่นภาษาไทยที่ลดเฉพาะ **output token** โดยไม่เสียความถูกต้องทาง technical
 
 ---
 
 `pordee` คือ Claude Code plugin สั่งให้ agent ตอบภาษาไทยกระชับ — ตัดคำสุภาพ (ครับ/ค่ะ/นะคะ), คำลังเล (อาจจะ/น่าจะ), และคำเชื่อมที่ไม่จำเป็นทิ้ง เก็บ technical term อังกฤษไว้ตามเดิม
 
-ผล: ใช้ token น้อยลง 60-75% เนื้อหาเท่าเดิม
+ผล: ลด output token 60-75% เนื้อหาเท่าเดิม
 
 ---
 
 ## ติดตั้ง
 
-### ผ่าน Claude Code plugin (แนะนำ)
+### One-line installer (แนะนำ)
+
+Auto-detect ทุก agent บนเครื่อง ติดตั้งให้ทุกตัวที่ support ใช้เวลา ~30 วินาที รันใหม่ได้ปลอดภัย
+
+**macOS · Linux · WSL · Git Bash**
 
 ```bash
-claude plugin marketplace add kerlos/pordee
-claude plugin install pordee@pordee
+curl -fsSL https://raw.githubusercontent.com/kerlos/pordee/main/install.sh | bash
 ```
 
-หลังติดตั้งเสร็จ hooks จะถูก register อัตโนมัติ — เริ่ม session ใหม่แล้ว `/pordee` ใช้ได้ทันที
+**Windows · PowerShell 5.1+**
+
+```powershell
+irm https://raw.githubusercontent.com/kerlos/pordee/main/install.ps1 | iex
+```
+
+ดูก่อนลอง:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kerlos/pordee/main/install.sh | bash -s -- --dry-run
+```
+
+### ผ่าน skills registry
+
+```bash
+npx skills add kerlos/pordee
+```
+
+สำหรับ agent ที่รองรับ skills registry (Cursor, Windsurf, Cline, Codex, ฯลฯ) เปิดใช้ต่อ session ด้วย `/pordee`
+
+### ทีละ agent
+
+ดูคำสั่งเฉพาะ agent ทั้งหมดและ flags ต่าง ๆ ใน [INSTALL.md](./INSTALL.md)
 
 ---
 
@@ -72,9 +97,9 @@ Pattern: `[ของ] [ทำ] [เหตุผล]. [ขั้นต่อ].`
 
 <table>
 <tr>
-<th width="34%">🗣️ Normal<br><sub>~80 tokens</sub></th>
-<th width="33%">🪶 Lite<br><sub>~45 tokens · 44% saved</sub></th>
-<th width="33%">⚡ Full<br><sub>~22 tokens · 73% saved</sub></th>
+<th width="34%">🗣️ Normal<br><sub>~80 output tokens</sub></th>
+<th width="33%">🪶 Lite<br><sub>~45 output tokens · 44% saved</sub></th>
+<th width="33%">⚡ Full<br><sub>~22 output tokens · 73% saved</sub></th>
 </tr>
 <tr>
 <td>"แน่นอนครับ ผมยินดีจะอธิบายให้นะครับ จริงๆ แล้วเหตุผลที่ React component ของคุณ re-render นั้น น่าจะเกิดจากการที่คุณส่ง object reference ใหม่เป็น prop ในทุกครั้งที่ component ถูก render ซึ่งทำให้ React มองว่า prop เปลี่ยน และทำการ re-render component ลูก ดังนั้นคุณอาจจะลองใช้ useMemo เพื่อ memoize object นั้นดูครับ"</td>
@@ -96,9 +121,9 @@ Pattern: `[ของ] [ทำ] [เหตุผล]. [ขั้นต่อ].`
 
 <table>
 <tr>
-<th width="34%">🗣️ Normal<br><sub>~70 tokens</sub></th>
-<th width="33%">🪶 Lite<br><sub>~35 tokens · 50% saved</sub></th>
-<th width="33%">⚡ Full<br><sub>~18 tokens · 74% saved</sub></th>
+<th width="34%">🗣️ Normal<br><sub>~70 output tokens</sub></th>
+<th width="33%">🪶 Lite<br><sub>~35 output tokens · 50% saved</sub></th>
+<th width="33%">⚡ Full<br><sub>~18 output tokens · 74% saved</sub></th>
 </tr>
 <tr>
 <td>"ครับ การทำ database connection pooling นั้น โดยทั่วไปแล้วก็คือการที่เราเก็บ connection ของ database ที่เปิดไว้แล้ว เพื่อนำกลับมาใช้ใหม่อีกครั้ง แทนที่จะต้องเปิด connection ใหม่ทุกครั้งที่มี request เข้ามา ซึ่งจะช่วยลด overhead ของการทำ TCP handshake และ authentication ได้อย่างมีประสิทธิภาพ"</td>
@@ -120,9 +145,9 @@ Pattern: `[ของ] [ทำ] [เหตุผล]. [ขั้นต่อ].`
 
 <table>
 <tr>
-<th width="34%">🗣️ Normal<br><sub>~55 tokens</sub></th>
-<th width="33%">🪶 Lite<br><sub>~30 tokens · 45% saved</sub></th>
-<th width="33%">⚡ Full<br><sub>~14 tokens · 75% saved</sub></th>
+<th width="34%">🗣️ Normal<br><sub>~55 output tokens</sub></th>
+<th width="33%">🪶 Lite<br><sub>~30 output tokens · 45% saved</sub></th>
+<th width="33%">⚡ Full<br><sub>~14 output tokens · 75% saved</sub></th>
 </tr>
 <tr>
 <td>"ครับ ผมตรวจสอบให้แล้วนะครับ ปัญหาที่คุณเจอน่าจะเกิดจาก bug ใน auth middleware ครับ จริงๆ แล้วในส่วนของ token expiry check นั้น โค้ดใช้เครื่องหมาย <code>&lt;</code> แทนที่จะเป็น <code>&lt;=</code> ซึ่งทำให้ token ที่หมดอายุพอดีไม่ถูก reject ดังนั้นเราควรจะแก้ตรงจุดนี้ครับ"</td>
@@ -144,9 +169,9 @@ Pattern: `[ของ] [ทำ] [เหตุผล]. [ขั้นต่อ].`
 
 <table>
 <tr>
-<th width="34%">🗣️ Normal<br><sub>~70 tokens</sub></th>
-<th width="33%">🪶 Lite<br><sub>~32 tokens · 54% saved</sub></th>
-<th width="33%">⚡ Full<br><sub>~14 tokens · 80% saved</sub></th>
+<th width="34%">🗣️ Normal<br><sub>~70 output tokens</sub></th>
+<th width="33%">🪶 Lite<br><sub>~32 output tokens · 54% saved</sub></th>
+<th width="33%">⚡ Full<br><sub>~14 output tokens · 80% saved</sub></th>
 </tr>
 <tr>
 <td>"ได้เลยครับ จริงๆ แล้วการเลือกอาหารกลางวันก็ขึ้นอยู่กับหลายปัจจัยนะครับ เช่น งบประมาณ เวลาที่มี และความต้องการทางโภชนาการของคุณ ถ้าคุณอยากทานอาหารที่ทำง่ายและมีประโยชน์ ผมขอแนะนำว่าน่าจะลองทำสลัดไก่ย่างดูครับ เพราะว่ามีโปรตีนสูงและไม่ใช้เวลาเตรียมนานเลย"</td>
@@ -168,9 +193,9 @@ Pattern: `[ของ] [ทำ] [เหตุผล]. [ขั้นต่อ].`
 
 <table>
 <tr>
-<th width="34%">🗣️ Normal<br><sub>~75 tokens</sub></th>
-<th width="33%">🪶 Lite<br><sub>~30 tokens · 60% saved</sub></th>
-<th width="33%">⚡ Full<br><sub>~12 tokens · 84% saved</sub></th>
+<th width="34%">🗣️ Normal<br><sub>~75 output tokens</sub></th>
+<th width="33%">🪶 Lite<br><sub>~30 output tokens · 60% saved</sub></th>
+<th width="33%">⚡ Full<br><sub>~12 output tokens · 84% saved</sub></th>
 </tr>
 <tr>
 <td>"ครับ ถ้าคุณอยากไปเที่ยวเชียงใหม่ ผมแนะนำว่าน่าจะไปช่วงเดือนพฤศจิกายนถึงกุมภาพันธ์ครับ เพราะว่าเป็นช่วงที่อากาศเย็นสบาย ไม่ร้อนเกินไป และไม่มีฝนตกบ่อยเหมือนช่วงอื่นๆ จริงๆ แล้วเดือนธันวาคมก็เป็นเดือนที่นิยมที่สุดเลยนะครับ แต่ก็จะคนเยอะหน่อย"</td>
@@ -192,9 +217,9 @@ Pattern: `[ของ] [ทำ] [เหตุผล]. [ขั้นต่อ].`
 
 <table>
 <tr>
-<th width="34%">🗣️ Normal<br><sub>~70 tokens</sub></th>
-<th width="33%">🪶 Lite<br><sub>~32 tokens · 54% saved</sub></th>
-<th width="33%">⚡ Full<br><sub>~14 tokens · 80% saved</sub></th>
+<th width="34%">🗣️ Normal<br><sub>~70 output tokens</sub></th>
+<th width="33%">🪶 Lite<br><sub>~32 output tokens · 54% saved</sub></th>
+<th width="33%">⚡ Full<br><sub>~14 output tokens · 80% saved</sub></th>
 </tr>
 <tr>
 <td>"ครับ การนอนหลับให้สนิทนั้นมีหลายวิธีนะครับ ก่อนอื่นเลย คุณควรจะหลีกเลี่ยงการดื่มกาแฟหรือเครื่องดื่มที่มีคาเฟอีนหลังบ่ายสาม จริงๆ แล้วก็ควรจะปิดหน้าจอทุกชนิดอย่างน้อย 30 นาทีก่อนนอนนะครับ และพยายามเข้านอนเวลาเดิมทุกวันเพื่อให้ร่างกายปรับนาฬิกาชีวิต"</td>

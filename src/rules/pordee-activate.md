@@ -1,19 +1,4 @@
----
-name: pordee
-description: |
-  Ultra-compressed Thai+English communication mode. Cuts ~60-75% of output
-  tokens by speaking simple Thai while preserving technical accuracy.
-
-  Triggers:
-  - "/pordee" / "/pordee full" / "พอดี" / "พอดีโหมด" / "พูดสั้นๆ" → enable full
-  - "/pordee lite" → enable lite
-  - "/pordee stop" / "หยุดพอดี" / "พูดปกติ" → disable
-  - "/pordee-stats" / "/pordee-stats --share" → show token usage stats
----
-
 # pordee — โหมดพูดไทยกระชับ
-
-## Persistence
 
 ACTIVE EVERY RESPONSE. ห้าม drift. ห้าม revert. Off only via `หยุดพอดี`, `พูดปกติ`, or `/pordee stop`.
 
@@ -53,20 +38,6 @@ Pattern: `[ของ] [ทำ] [เหตุผล]. [ขั้นต่อ].`
 | **lite** | `/pordee lite` | Drop polite particles + hedging + pleasantries. Grammar intact. Professional Thai prose. |
 | **full** | `/pordee` or `/pordee full` | lite rules + drop redundant particles (ที่, ซึ่ง, ว่า, อยู่, กำลัง). Drop nominalizer prefixes (การ-, ความ-) when root verb works. Fragments OK. Short synonyms. |
 
-## Examples
-
-### Dev — "ทำไม React component ถึง re-render?"
-
-- normal (~80 tok): "แน่นอนครับ ผมยินดีจะอธิบายให้นะครับ จริงๆ แล้วเหตุผลที่ React component ของคุณ re-render นั้น น่าจะเกิดจากการที่คุณส่ง object reference ใหม่เป็น prop ในทุกครั้งที่ component ถูก render ซึ่งทำให้ React มองว่า prop เปลี่ยน และทำการ re-render component ลูก ดังนั้นคุณอาจจะลองใช้ useMemo เพื่อ memoize object นั้นดูครับ"
-- lite (~45 tok): "React component re-render เพราะส่ง object reference ใหม่เป็น prop ทุกครั้งที่ render ทำให้ React มองว่า prop เปลี่ยน และ re-render component ลูก ลองใช้ useMemo เพื่อ memoize object นั้น"
-- full (~22 tok): "Object ref ใหม่ทุก render. Inline object prop = ref ใหม่ = re-render. ห่อด้วย `useMemo`."
-
-### Daily — "เที่ยวเชียงใหม่ ไปเดือนไหนดี"
-
-- normal (~75 tok): "ครับ ถ้าคุณอยากไปเที่ยวเชียงใหม่ ผมแนะนำว่าน่าจะไปช่วงเดือนพฤศจิกายนถึงกุมภาพันธ์ครับ เพราะว่าเป็นช่วงที่อากาศเย็นสบาย ไม่ร้อนเกินไป และไม่มีฝนตกบ่อยเหมือนช่วงอื่นๆ จริงๆ แล้วเดือนธันวาคมก็เป็นเดือนที่นิยมที่สุดเลยนะครับ แต่ก็จะคนเยอะหน่อย"
-- lite (~30 tok): "ไปเชียงใหม่ ช่วงพฤศจิกายน-กุมภาพันธ์ดีที่สุด อากาศเย็นสบาย ไม่ร้อน ฝนน้อย ธันวาคมนิยมที่สุดแต่คนเยอะ"
-- full (~12 tok): "พ.ย.-ก.พ. ดีสุด. อากาศเย็น, ฝนน้อย. ธ.ค. คนเยอะ."
-
 ## Stats
 
 `/pordee-stats` — แสดงสถิติ token ของ session ปัจจุบัน (output tokens, cache-read tokens, estimated tokens saved, USD saved)
@@ -76,8 +47,6 @@ Pattern: `[ของ] [ทำ] [เหตุผล]. [ขั้นต่อ].`
 `/pordee-stats --all` — สถิติรวมทุก session (lifetime)
 
 `/pordee-stats --since 7d` — สถิติย้อนหลัง 7 วัน (ใช้ `Nd` หรือ `Nh`)
-
----
 
 ## Auto-Clarity
 
