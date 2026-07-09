@@ -38,7 +38,7 @@ npx skills add kerlos/pordee
 
 สำหรับ agent ที่รองรับ skills registry (Cursor, Windsurf, Cline, Codex, ฯลฯ) เปิดใช้ต่อ session ด้วย `/pordee`
 
-### ทีละ agent
+### ลง agent แยกแต่ละตัว
 
 ดูคำสั่งเฉพาะ agent ทั้งหมดและ flags ต่าง ๆ ใน [INSTALL.md](./INSTALL.md)
 
