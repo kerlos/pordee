@@ -12,11 +12,11 @@
 
 ---
 
-## ติดตั้ง
+## ติดตั้งได้หลายวิธี
 
 ### One-line installer (แนะนำ)
 
-Auto-detect ทุก agent บนเครื่อง ติดตั้งให้ทุกตัวที่ support ใช้เวลา ~30 วินาที รันใหม่ได้ปลอดภัย
+ตรวจสอบ agent บนเครื่องที่มีอยู่และติดตั้งได้ทันที
 
 **macOS · Linux · WSL · Git Bash**
 
@@ -28,12 +28,6 @@ curl -fsSL https://raw.githubusercontent.com/kerlos/pordee/main/install.sh | bas
 
 ```powershell
 irm https://raw.githubusercontent.com/kerlos/pordee/main/install.ps1 | iex
-```
-
-ดูก่อนลอง:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/kerlos/pordee/main/install.sh | bash -s -- --dry-run
 ```
 
 ### ผ่าน skills registry
