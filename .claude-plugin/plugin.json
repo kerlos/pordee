@@ -1,6 +1,6 @@
 {
   "name": "pordee",
-  "description": "โหมดสื่อสารแบบกระชับสำหรับภาษาไทย+อังกฤษ ลด token ~60-75% โดยพูดไทยสั้นๆ แต่ยังถูกต้องทาง technical (Pordee — terse Thai+English mode for Claude Code, cuts ~60-75% tokens while keeping full technical accuracy.)",
+  "description": "โหมดสื่อสารแบบกระชับสำหรับภาษาไทย+อังกฤษ ลด output token ~60-75% โดยพูดไทยสั้นๆ แต่ยังถูกต้องทาง technical (Pordee — terse Thai+English mode for Claude Code, cuts ~60-75% of output tokens while keeping full technical accuracy.)",
   "author": {
     "name": "Vatunyoo Suwannapisit"
   },

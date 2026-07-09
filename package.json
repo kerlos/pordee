@@ -1,9 +1,19 @@
 {
   "name": "pordee",
   "version": "0.1.0",
-  "description": "พอดี — Thai+English terse mode for Claude Code. Cuts ~60-75% of tokens while keeping technical accuracy.",
-  "private": true,
+  "description": "พอดี — Thai+English terse mode for Claude Code. Cuts ~60-75% of output tokens while keeping technical accuracy.",
   "type": "commonjs",
+  "bin": {
+    "pordee": "./bin/install.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kerlos/pordee.git"
+  },
+  "homepage": "https://github.com/kerlos/pordee",
+  "bugs": {
+    "url": "https://github.com/kerlos/pordee/issues"
+  },
   "scripts": {
     "test": "node --test 'tests/test_*.js'"
   },

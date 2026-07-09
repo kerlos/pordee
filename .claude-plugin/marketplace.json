@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "pordee",
-      "description": "พอดี — พูดไทยสั้นๆ ตัด token ลง 60-75% โดยไม่เสีย technical accuracy",
+      "description": "พอดี — พูดไทยสั้นๆ ลด output token 60-75% โดยไม่เสีย technical accuracy",
       "source": "./",
       "category": "productivity"
     }
