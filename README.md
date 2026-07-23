@@ -276,7 +276,6 @@ compression ratio ที่ stats ใช้มาจาก `benchmarks/compressi
 
 ```bash
 # รัน benchmark (ต้องมี ANTHROPIC_API_KEY)
-export ANTHROPIC_BASE_URL=https://api.kimi.com/coding/v1
 node benchmarks/run.js --level full
 node benchmarks/run.js --level lite
 ```
